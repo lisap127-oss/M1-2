@@ -7,4 +7,4 @@
 // Vercel 배포 시: 이 값을 본인 Render 백엔드 주소로 바꿔서 커밋하거나,
 // Vercel 프로젝트에 넣은 값을 빌드시 주입하려면 별도 빌드스텝이 필요합니다(정적 사이트라서).
 // 가장 간단한 방법은 아래 상수를 배포 주소로 교체하는 것입니다.
-window.API_BASE_URL = "http://127.0.0.1:8000";
+window.API_BASE_URL = "https://study-ai-assistant-wm3d.onrender.com";
