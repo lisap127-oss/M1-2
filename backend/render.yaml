@@ -1,0 +1,21 @@
+# Render 배포 설정 (Blueprint)
+# Render 대시보드에서 이 저장소를 연결하면 자동 인식됩니다.
+# 또는 Web Service를 수동 생성해 아래 Build/Start Command만 넣어도 됩니다.
+services:
+  - type: web
+    name: study-ai-assistant-api
+    runtime: python
+    rootDir: backend
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: OPENAI_MAX_TOKENS
+        value: "500"
+      - key: FIREBASE_SERVICE_ACCOUNT_JSON
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false

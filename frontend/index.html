@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>학습 코치 · 나만의 AI 비서</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- 차트 라이브러리(프레임워크 아님, 단일 JS 라이브러리) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- ===== 좌측: 대화 기록 ===== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">分</div>
+        <div>
+          <h1>학습 코치</h1>
+          <p>내 기록을 아는 AI 비서</p>
+        </div>
+      </div>
+
+      <button class="btn-new" id="newChatBtn">+ 새 대화</button>
+
+      <div class="history">
+        <div class="history-head">대화 기록</div>
+        <ul id="conversationList" class="conv-list">
+          <li class="empty-hint">아직 저장된 대화가 없어요.</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-foot">
+        <button class="toggle" id="themeToggle" title="다크 모드 전환">
+          <span id="themeIcon">🌙</span> <span id="themeLabel">다크 모드</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ===== 중앙: 채팅 ===== -->
+    <main class="chat">
+      <header class="chat-head">
+        <div>
+          <h2 id="chatTitle">새 대화</h2>
+          <p class="muted" id="coldstartNote">
+            ※ 백엔드가 무료 티어라 첫 응답이 느릴 수 있어요(콜드스타트, 최대 1분).
+          </p>
+        </div>
+      </header>
+
+      <div class="messages" id="messages">
+        <div class="welcome">
+          <h3>무엇이든 물어보세요</h3>
+          <p>내 학습 시간 데이터를 바탕으로 답해드려요.</p>
+          <div class="chips">
+            <button class="chip">이번 주 공부 어땠어?</button>
+            <button class="chip">가장 많이 공부한 날은?</button>
+            <button class="chip">요즘 추세가 어때?</button>
+          </div>
+        </div>
+      </div>
+
+      <form class="composer" id="chatForm">
+        <input id="chatInput" type="text" placeholder="메시지를 입력하세요…"
+               autocomplete="off" />
+        <button type="submit" id="sendBtn">보내기</button>
+      </form>
+    </main>
+
+    <!-- ===== 우측: 요약 + 차트 + 데이터 관리 ===== -->
+    <section class="panel">
+      <!-- 요약 -->
+      <div class="card summary-card">
+        <div class="card-head">
+          <h3>데이터 요약</h3>
+          <button class="link-btn" id="refreshSummary">새로고침</button>
+        </div>
+        <div id="summaryBody" class="summary-body">
+          <p class="muted">불러오는 중…</p>
+        </div>
+      </div>
+
+      <!-- 차트 (보너스) -->
+      <div class="card">
+        <div class="card-head">
+          <h3>학습 시간 추이</h3>
+          <button class="link-btn" id="exportCsv">CSV 내보내기</button>
+        </div>
+        <canvas id="trendChart" height="160"></canvas>
+      </div>
+
+      <!-- 데이터 관리 -->
+      <div class="card">
+        <div class="card-head"><h3>데이터 관리</h3></div>
+        <form id="dataForm" class="data-form">
+          <input type="date" id="d_date" required />
+          <input type="number" id="d_value" placeholder="분" min="0" max="1440" required />
+          <input type="text" id="d_memo" placeholder="메모(과목)" maxlength="200" />
+          <button type="submit">추가</button>
+        </form>
+        <div class="data-list-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>날짜</th><th>분</th><th>메모</th><th></th></tr>
+            </thead>
+            <tbody id="dataTableBody">
+              <tr><td colspan="4" class="muted">불러오는 중…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 토스트 -->
+  <div id="toast" class="toast"></div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

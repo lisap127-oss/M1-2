@@ -1,0 +1,13 @@
+# 절대 커밋하면 안 되는 민감 파일
+.env
+*.env
+serviceAccountKey.json
+*serviceAccount*.json
+firebase-*.json
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+_test_local.py
