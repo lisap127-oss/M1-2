@@ -24,11 +24,9 @@
 
 ## 🌐 배포 URL
 
-> 배포 후 아래를 본인 주소로 채우세요.
-
-- 프론트엔드(Vercel): `https://<your-frontend>.vercel.app`
-- 백엔드 API(Render): `https://<your-service>.onrender.com`
-- Swagger 문서: `https://<your-service>.onrender.com/docs`
+- 프론트엔드(Vercel): https://m1-2-frontend-brown.vercel.app
+- 백엔드 API(Render): https://study-ai-assistant-wm3d.onrender.com
+- Swagger 문서: https://study-ai-assistant-wm3d.onrender.com/docs
 
 ## 🗂 폴더 구조
 
